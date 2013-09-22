@@ -11,7 +11,7 @@
 // node_modules
 var path = require('path');
 var grunt = require('grunt');
-var _    = grunt.util._;
+var _ = grunt.util._;
 
 // Export the utils module.
 exports = module.exports = {};
@@ -21,28 +21,28 @@ exports = module.exports = {};
  * Globbing Utils
  */
 
-exports.content = function (opts, patterns, sep) {
+exports.content = function (patterns, sep) {
   sep = sep || '';
   return grunt.file.expand({filter: 'isFile'}, patterns).map(function (filepath) {
       return grunt.file.read(filepath) + sep;
   }).join(grunt.util.normalizelf(grunt.util.linefeed));
 };
 
-exports.filepath = function (opts, patterns, sep) {
+exports.filepath = function (patterns, sep) {
   sep = sep || '';
   return grunt.file.expand(patterns).map(function (filepath) {
       return filepath + sep;
   }).join(grunt.util.normalizelf(grunt.util.linefeed));
 };
 
-exports.filename = function (opts, patterns, sep) {
+exports.filename = function (patterns, sep) {
   sep = sep || '';
   return grunt.file.expand({filter: 'isFile'}, patterns).map(function (filepath) {
       return path.basename(filepath) + sep;
   }).join(grunt.util.normalizelf(grunt.util.linefeed));
 };
 
-exports.basename = function (opts, patterns, sep) {
+exports.basename = function (patterns, sep) {
   sep = sep || '';
   return grunt.file.expand({filter: 'isFile'}, patterns).map(function (filepath) {
       return path.basename(filepath, path.extname(filepath)) + sep;
