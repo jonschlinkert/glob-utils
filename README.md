@@ -1,6 +1,6 @@
 # glob-utils [![NPM version](https://badge.fury.io/js/glob-utils.png)](http://badge.fury.io/js/glob-utils)
 
-> "Mid-level" globbing utilities
+> Utilities for file globbing and Grunt.js projects.
 
 
 ## Quickstart
