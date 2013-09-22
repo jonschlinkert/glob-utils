@@ -1,4 +1,4 @@
-# globber [![NPM version](https://badge.fury.io/js/globber.png)](http://badge.fury.io/js/globber)
+# glob-utils [![NPM version](https://badge.fury.io/js/glob-utils.png)](http://badge.fury.io/js/glob-utils)
 
 > "Mid-level" globbing utilities
 
@@ -6,13 +6,13 @@
 ## Quickstart
 
 ```bash
-npm i globber --save
+npm i glob-utils --save
 ```
 
 ## Methods
 
 ```js
-var glob = require('globber');
+var glob = require('glob-utils');
 
 glob.content(patterns, sep) {
 glob.filepath(patterns, sep) {
@@ -26,7 +26,7 @@ glob.basename(patterns, sep) {
 Example usage in an Underscore or Lo-Dash mixin:
 
 ```js
-var glob = require('globber');
+var glob = require('glob-utils');
 
 grunt.util._.mixin({
   include: function (filepath) {
