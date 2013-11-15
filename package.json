@@ -1,7 +1,7 @@
 {
   "name": "glob-utils",
   "description": "Utilities for file globbing and Grunt.js projects.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/assemble/glob-utils",
   "author": {
     "name": "Jon Schlinkert",
@@ -20,12 +20,14 @@
       "url": "https://github.com/assemble/glob-utils/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "utils.js",
+  "main": "index.js",
   "engines": {
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "grunt": "~0.4.1"
+    "globule": "~0.1.0",
+    "grunt": "~0.4.1",
+    "lodash": "~2.3.0"
   },
   "keywords": [
     "glob",
@@ -34,5 +36,8 @@
     "expand",
     "grunt.file.expand",
     "pattern"
-  ]
+  ],
+  "devDependencies": {
+    "fs-utils": "~0.1.1"
+  }
 }
