@@ -1,6 +1,6 @@
 # glob-utils [![NPM version](https://badge.fury.io/js/glob-utils.png)](http://badge.fury.io/js/glob-utils)
 
-> Utilities for file globbing and Grunt.js projects.
+> File globbing convenience utilities, with methods for returning an array of file names, file content, or objects with each these properties.
 
 ## Quickstart
 
@@ -24,18 +24,18 @@ glob.extname(patterns, options)
 // Returns an array, each item is the content of a file
 glob.content(patterns, options)
 // Returns an array of objects. each object contains the above properties
-glob.all(patterns, options)
+glob.fileObj(patterns, options)
 ```
 
 ## Examples
 
 ### glob.extname()
 
-Return an array of extensions for files that match the given pattern.
+Returns an array of _unique_ extensions for files that match the given pattern.
 
 ```js
 var _ = require('lodash');
-var extnames = _.unique(glob.extname('foo/*.*'));
+var extnames = glob.extname('foo/*.*');
 console.log(extnames);
 ```
 might return something like:
@@ -49,7 +49,7 @@ might return something like:
 ```
 ### glob.filepath()
 
-Return an array of filepaths for files that match the given pattern.
+Returns an array of filepaths for files that match the given pattern.
 
 ```js
 var filepaths = glob.filepath('foo/*.md');
@@ -66,22 +66,22 @@ might return something like:
 ```
 
 ### glob.content()
-Return an array of content for files that match the given pattern.
+Returns an array of content for files that match the given pattern.
 
 ```js
-glob.content('foo/*.md').join('\n');
+glob.content('foo/*.md').join('\n~~~\n');
 ```
 
 might return something like:
 
 ```
 This is the content from foo.
-
+~~~
 This is the content from Bar.
 ```
 
-### glob.all()
-Return an array of objects, where each object contains the following properties:
+### glob.fileObj()
+Returns an array of objects, where each object contains the following properties:
 
 * `filepath`
 * `filename`
@@ -89,7 +89,7 @@ Return an array of objects, where each object contains the following properties:
 * `content`
 
 ```js
-glob.all('foo/*.md');
+glob.fileObj('foo/*.md');
 ```
 might return something like:
 
@@ -113,27 +113,24 @@ might return something like:
 ```
 
 ### Example usage
-Example usage in an Underscore or Lo-Dash mixin:
+Example usage as Underscore or Lo-Dash mixin:
 
 ```js
-var glob = require('glob-utils');
+require('glob-utils');
+var _ = require('lodash');
 
-grunt.util._.mixin({
-  include: function (filepath, options) {
-    return glob.content(filepath, options);
-  }
-});
+console.log(_);
 ```
 
 Now use the mixin we just created:
 
 ```js
-_.include("docs/*.md");
+_.glob("docs/*.md");
 ```
 Or in templates:
 
 ```js
-<%= _.include("docs/*.md") %>
+<%= _.glob("docs/*.md") %>
 ```
 
 Returns the concatenated content of all files in the `docs/` directory with the `.md` extension.

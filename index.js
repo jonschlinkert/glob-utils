@@ -8,82 +8,74 @@
 
 'use strict';
 
-// node_modules
+// Node.js
 var fs = require('fs');
 var path = require('path');
+
+// node_modules
 var glob = require('globule');
 var _ = require('lodash');
-
-
-// The module to export.
-exports = module.exports = {};
-
-
-function readFile(src) {
-  return fs.readFileSync(src, 'utf8');
-}
 
 
 /**
  * Globbing Utils
  */
 
-var filepath = function (patterns, options) {
+exports.filepath = function (patterns, options) {
   options = _.extend({sep: ''}, options || {});
   return glob.find(patterns, options).map(function (filepath) {
-    return filepath.concat();
+    return filepath;
   });
 };
 
-var filename = function (patterns, options) {
+exports.filename = function (patterns, options) {
   options = _.extend({sep: '', filter: 'isFile'}, options || {});
   return glob.find(patterns, options).map(function (filepath) {
-    return path.basename(filepath).concat();
+    return path.basename(filepath);
   });
 };
 
-var basename = function (patterns, options) {
+exports.basename = function (patterns, options) {
   options = _.extend({sep: '', filter: 'isFile'}, options || {});
   return glob.find(patterns, options).map(function (filepath) {
-    return path.basename(filepath, path.extname(filepath)).concat();
+    return path.basename(filepath, path.extname(filepath));
   });
 };
 
-var extname = function (patterns, options) {
+exports.extname = function (patterns, options) {
+  options = _.extend({sep: '', filter: 'isFile'}, options || {});
+  return _.unique(glob.find(patterns, options).map(function (filepath) {
+    return path.extname(filepath);
+  }));
+};
+
+exports.content = function (patterns, options) {
   options = _.extend({sep: '', filter: 'isFile'}, options || {});
   return glob.find(patterns, options).map(function (filepath) {
-    return path.extname(filepath).concat();
+    filepath = fs.readFileSync(filepath, 'utf8');
+    return filepath;
   });
 };
 
-var content = function (patterns, options) {
+exports.fileObj = function (patterns, options) {
+  var globObj = [];
   options = _.extend({sep: '', filter: 'isFile'}, options || {});
   return glob.find(patterns, options).map(function (filepath) {
-    return readFile(filepath).concat();
-  });
-};
-
-var all = function (patterns, options) {
-  var globs = [];
-  options = _.extend({sep: '', filter: 'isFile'}, options || {});
-  return glob.find(patterns, options).map(function (filepath) {
-    globs.push({
-      content : readFile(filepath),
+    globObj.push({
+      content : fs.readFileSync(filepath, 'utf8'),
       filepath: filepath,
       filename: path.basename(filepath),
       basename: path.basename(filepath, path.extname(filepath)),
       extname: path.extname(filepath),
     });
-    return globs;
+    return globObj;
   });
 };
 
+// Alias for backward compatibility. Note that
+// this will not be available as a Lo-Dash mixin
+exports.any = exports.fileObj;
 
-module.exports = {
-  content: content,
-  filepath: filepath,
-  filename: filename,
-  basename: basename,
-  extname: extname,
-  all: all
-};
+
+// Mix exports into lodash
+_.mixin(exports);

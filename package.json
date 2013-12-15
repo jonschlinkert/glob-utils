@@ -1,7 +1,7 @@
 {
   "name": "glob-utils",
   "description": "Utilities for file globbing and Grunt.js projects.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/assemble/glob-utils",
   "author": {
     "name": "Jon Schlinkert",
