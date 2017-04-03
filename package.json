@@ -1,7 +1,7 @@
 {
   "name": "glob-utils",
   "description": "Utilities for file globbing and Grunt.js projects.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "homepage": "https://github.com/jonschlinkert/glob-utils",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/glob-utils",
