@@ -2,46 +2,36 @@
   "name": "glob-utils",
   "description": "Utilities for file globbing and Grunt.js projects.",
   "version": "0.4.0",
-  "homepage": "https://github.com/assemble/glob-utils",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/assemble/glob-utils.git"
-  },
+  "homepage": "https://github.com/jonschlinkert/glob-utils",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/glob-utils",
   "bugs": {
-    "url": "https://github.com/assemble/glob-utils/issues"
+    "url": "https://github.com/jonschlinkert/glob-utils/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/assemble/glob-utils/blob/master/LICENSE-MIT"
-    }
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
     "node": ">= 0.8.0"
   },
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "globby": "^0.1.1",
     "gray-matter": "^0.4.2"
   },
+  "devDependencies": {
+    "should": "^4.0.4",
+    "mocha": "*"
+  },
   "keywords": [
+    "expand",
     "glob",
     "globbing",
     "minimatch",
-    "expand",
     "pattern"
-  ],
-  "devDependencies": {
-    "should": "^4.0.4",
-    "verb": ">= 0.2.6",
-    "verb-tag-jscomments": ">= 0.2.0",
-    "mocha": "*"
-  },
-  "scripts": {
-    "test": "mocha -R spec"
-  }
+  ]
 }
